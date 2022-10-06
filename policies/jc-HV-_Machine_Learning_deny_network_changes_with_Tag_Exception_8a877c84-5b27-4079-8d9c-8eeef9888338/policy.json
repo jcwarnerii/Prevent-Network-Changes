@@ -1,0 +1,117 @@
+{
+ "properties": {
+  "displayName": "jc-HV- Machine Learning deny network changes with Tag Exception",
+  "policyType": "Custom",
+  "mode": "All",
+  "description": "Denys all network changes unless a specfic tag with a specific value is present",
+  "metadata": {
+   "createdBy": "11a70583-fc7d-4e8c-9963-15630c21009a",
+   "createdOn": "2022-09-20T21:37:44.2532812Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "Enable or disable the execution of the policy"
+    },
+    "allowedValues": [
+     "Audit",
+     "Deny",
+     "Disabled"
+    ],
+    "defaultValue": "Deny"
+   },
+   "tagName": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Tag Name",
+     "description": "The tag name to skip the application of a lock"
+    }
+   },
+   "tagValue": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Tag Value",
+     "description": "Value of the tag to skip"
+    }
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "Not": {
+       "field": "[concat('tags[', parameters('tagName'), ']')]",
+       "equals": "[parameters('tagValue')]"
+      }
+     },
+     {
+      "anyOf": [
+       {
+        "field": "Microsoft.MachineLearningServices/workspaces/privateEndpointConnections[*]",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.MachineLearningServices/workspaces/sharedPrivateLinkResources[*]",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.MachineLearningServices/workspaces/publicNetworkAccess",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.MachineLearningServices/workspaces/onlineEndpoints/publicNetworkAccess",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.MachineLearningServices/workspaces/onlineEndpoints/deployments/privateNetworkConnection",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.MachineLearningServices/workspaces/computes/subnet",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.MachineLearningServices/workspaces/computes/sshSettings",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.MachineLearningServices/workspaces/computes/connectivityEndpoints",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.MachineLearningServices/workspaces/computes/connectivityEndpoints.publicIpAddress",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.MachineLearningServices/workspaces/computes/connectivityEndpoints.privateIpAddress",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.MachineLearningServices/workspaces/computes/isolatedNetwork",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.MachineLearningServices/workspaces/computes/enableNodePublicIp",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.MachineLearningServices/workspaces/privateEndpointConnections/privateEndpoint",
+        "exists": "true"
+       }
+      ]
+     }
+    ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]"
+   }
+  }
+ },
+ "id": "/subscriptions/adb72f63-572d-40ac-836f-c8c70ab7c0c5/providers/Microsoft.Authorization/policyDefinitions/8a877c84-5b27-4079-8d9c-8eeef9888338",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "8a877c84-5b27-4079-8d9c-8eeef9888338"
+}

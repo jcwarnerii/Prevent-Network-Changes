@@ -1,0 +1,77 @@
+{
+ "properties": {
+  "displayName": "jc-HV- Application Insights deny network changes with Tag Exception",
+  "policyType": "Custom",
+  "mode": "All",
+  "description": "Denys all network changes unless a specfic tag with a specific value is present",
+  "metadata": {
+   "createdBy": "11a70583-fc7d-4e8c-9963-15630c21009a",
+   "createdOn": "2022-09-20T21:33:27.4385317Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "Enable or disable the execution of the policy"
+    },
+    "allowedValues": [
+     "Audit",
+     "Deny",
+     "Disabled"
+    ],
+    "defaultValue": "Deny"
+   },
+   "tagName": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Tag Name",
+     "description": "The tag name to skip the application of a lock"
+    }
+   },
+   "tagValue": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Tag Value",
+     "description": "Value of the tag to skip"
+    }
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "Not": {
+       "field": "[concat('tags[', parameters('tagName'), ']')]",
+       "equals": "[parameters('tagValue')]"
+      }
+     },
+     {
+      "anyOf": [
+       {
+        "field": "Microsoft.Insights/components/PrivateLinkScopedResources[*]",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Insights/components/publicNetworkAccessForIngestion",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Insights/components/publicNetworkAccessForQuery",
+        "exists": "true"
+       }
+      ]
+     }
+    ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]"
+   }
+  }
+ },
+ "id": "/subscriptions/adb72f63-572d-40ac-836f-c8c70ab7c0c5/providers/Microsoft.Authorization/policyDefinitions/506cada3-69c8-4de7-8b66-aa3a292e9020",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "506cada3-69c8-4de7-8b66-aa3a292e9020"
+}

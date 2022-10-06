@@ -1,0 +1,165 @@
+{
+ "properties": {
+  "displayName": "jc-HV-Databricks deny network changes with Tag Exception",
+  "policyType": "Custom",
+  "mode": "All",
+  "description": "Denys all network changes unless a specfic tag with a specific value is present",
+  "metadata": {
+   "createdBy": "11a70583-fc7d-4e8c-9963-15630c21009a",
+   "createdOn": "2022-09-20T21:07:17.4496777Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "Enable or disable the execution of the policy"
+    },
+    "allowedValues": [
+     "Audit",
+     "Deny",
+     "Disabled"
+    ],
+    "defaultValue": "Deny"
+   },
+   "tagName": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Tag Name",
+     "description": "The tag name to skip the application of a lock"
+    }
+   },
+   "tagValue": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Tag Value",
+     "description": "Value of the tag to skip"
+    }
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "Not": {
+       "field": "[concat('tags[', parameters('tagName'), ']')]",
+       "equals": "[parameters('tagValue')]"
+      }
+     },
+     {
+      "anyOf": [
+       {
+        "field": "Microsoft.DataBricks/workspaces/parameters.customPublicSubnetName",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.DataBricks/workspaces/parameters.customVirtualNetworkId",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.DataBricks/workspaces/parameters.customPrivateSubnetName",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.DataBricks/workspaces/parameters.enableNoPublicIp",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.DataBricks/workspaces/parameters.loadBalancerBackendPoolName",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.DataBricks/workspaces/parameters.loadBalancerId",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.DataBricks/workspaces/parameters.vnetAddressPrefix",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Databricks/workspaces/parameters.natGatewayName",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Databricks/workspaces/parameters.publicIpName",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Databricks/workspaces/privateEndpointConnections[*]",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Databricks/workspaces/publicNetworkAccess",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Databricks/workspaces/requiredNsgRules",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Databricks/workspaces/virtualNetworkPeerings/allowVirtualNetworkAccess",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Databricks/workspaces/virtualNetworkPeerings/allowForwardedTraffic",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Databricks/workspaces/virtualNetworkPeerings/allowGatewayTransit",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Databricks/workspaces/virtualNetworkPeerings/useRemoteGateways",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Databricks/workspaces/virtualNetworkPeerings/databricksVirtualNetwork",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Databricks/workspaces/virtualNetworkPeerings/databricksAddressSpace",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Databricks/workspaces/virtualNetworkPeerings/databricksAddressSpace.addressPrefixes[*]",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Databricks/workspaces/virtualNetworkPeerings/remoteVirtualNetwork",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Databricks/workspaces/virtualNetworkPeerings/remoteAddressSpace",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Databricks/workspaces/virtualNetworkPeerings/remoteAddressSpace.addressPrefixes[*]",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Databricks/workspaces/virtualNetworkPeerings/peeringState",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Databricks/workspaces/virtualNetworkPeerings/provisioningState",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Databricks/workspaces/privateEndpointConnections/privateEndpoint",
+        "exists": "true"
+       }
+      ]
+     }
+    ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]"
+   }
+  }
+ },
+ "id": "/subscriptions/adb72f63-572d-40ac-836f-c8c70ab7c0c5/providers/Microsoft.Authorization/policyDefinitions/a9b96af1-8b3e-4706-885b-f295a85457d0",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "a9b96af1-8b3e-4706-885b-f295a85457d0"
+}

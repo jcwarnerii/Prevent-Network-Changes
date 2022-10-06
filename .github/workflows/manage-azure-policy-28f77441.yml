@@ -1,0 +1,52 @@
+name: manage-azure-policy-28f77441
+on:
+  workflow_dispatch:
+    inputs:
+      remarks:
+        description: 'Reason for triggering the workflow run'
+        required: false
+        default: 'Updating Azure Policies'
+
+
+## Uncomment the following if you wish to automatically trigger workflow run with every commit
+#
+#  push:
+#    paths:
+#      - 'policies/jc-HV-App_Services_deny_network_changes_cdb40fef-207e-48d5-b2bb-22dd81eea702/**'
+#      - 'policies/jc-HV-App_Services_deny_network_changes_with_Tag_Exception_e54efacc-d479-4c70-82df-895bfeb37c1e/**'
+#      - 'policies/jc-HV-Databricks_deny_network_changes_with_Tag_Exception_a9b96af1-8b3e-4706-885b-f295a85457d0/**'
+#      - 'policies/jc-HV-Api_Management_deny_network_changes_with_Tag_Exception_1bd28de8-b885-4966-b39e-7dd832c24371/**'
+#      - 'policies/jc-HV-Datafactory_deny_network_changes_with_Tag_Exception_9c0799de-00d3-46e5-a36c-642b0d085cfd/**'
+#      - 'policies/jc-HV-Cosmos_Database_deny_network_changes_with_Tag_Exception_9c0799de-00d3-46e5-a36c-642b0d085d08/**'
+#      - 'policies/jc-HV-Event_Grid_deny_network_changes_with_Tag_Exception_9fd99743-a024-4a3a-8e95-560b37a0c694/**'
+#      - 'policies/jc-HV-_Application_Insights_deny_network_changes_with_Tag_Exception_506cada3-69c8-4de7-8b66-aa3a292e9020/**'
+#      - 'policies/jc-HV-_Logic_Apps_deny_network_changes_with_Tag_Exception_8c0a871f-9725-4098-997c-061c444919ac/**'
+#      - 'policies/jc-HV-_Machine_Learning_deny_network_changes_with_Tag_Exception_8a877c84-5b27-4079-8d9c-8eeef9888338/**'
+#      - 'policies/jc-HV-_SQL_Deny_Admin_Changes_with_Tag_Exception_e6e31f21-1931-40d7-ad21-8c7204b11d93/**'
+#      - .github/workflows/manage-azure-policy-28f77441.yml
+jobs:
+  apply-azure-policy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS_28f77441}}
+        allow-no-subscriptions: true
+    - name: Create or Update Azure Policies
+      uses: azure/manage-azure-policy@v0
+      with:
+        paths: |
+          policies/jc-HV-App_Services_deny_network_changes_cdb40fef-207e-48d5-b2bb-22dd81eea702/**
+          policies/jc-HV-App_Services_deny_network_changes_with_Tag_Exception_e54efacc-d479-4c70-82df-895bfeb37c1e/**
+          policies/jc-HV-Databricks_deny_network_changes_with_Tag_Exception_a9b96af1-8b3e-4706-885b-f295a85457d0/**
+          policies/jc-HV-Api_Management_deny_network_changes_with_Tag_Exception_1bd28de8-b885-4966-b39e-7dd832c24371/**
+          policies/jc-HV-Datafactory_deny_network_changes_with_Tag_Exception_9c0799de-00d3-46e5-a36c-642b0d085cfd/**
+          policies/jc-HV-Cosmos_Database_deny_network_changes_with_Tag_Exception_9c0799de-00d3-46e5-a36c-642b0d085d08/**
+          policies/jc-HV-Event_Grid_deny_network_changes_with_Tag_Exception_9fd99743-a024-4a3a-8e95-560b37a0c694/**
+          policies/jc-HV-_Application_Insights_deny_network_changes_with_Tag_Exception_506cada3-69c8-4de7-8b66-aa3a292e9020/**
+          policies/jc-HV-_Logic_Apps_deny_network_changes_with_Tag_Exception_8c0a871f-9725-4098-997c-061c444919ac/**
+          policies/jc-HV-_Machine_Learning_deny_network_changes_with_Tag_Exception_8a877c84-5b27-4079-8d9c-8eeef9888338/**
+          policies/jc-HV-_SQL_Deny_Admin_Changes_with_Tag_Exception_e6e31f21-1931-40d7-ad21-8c7204b11d93/**

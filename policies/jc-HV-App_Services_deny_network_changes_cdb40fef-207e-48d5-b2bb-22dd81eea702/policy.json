@@ -1,0 +1,397 @@
+{
+ "properties": {
+  "displayName": "jc-HV-App Services deny network changes",
+  "policyType": "Custom",
+  "mode": "All",
+  "description": "Denys all network changes ",
+  "metadata": {
+   "createdBy": "11a70583-fc7d-4e8c-9963-15630c21009a",
+   "createdOn": "2022-09-19T19:46:35.2263509Z",
+   "updatedBy": "11a70583-fc7d-4e8c-9963-15630c21009a",
+   "updatedOn": "2022-09-20T20:12:38.6919369Z"
+  },
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "Enable or disable the execution of the policy"
+    },
+    "allowedValues": [
+     "Audit",
+     "Deny",
+     "Disabled"
+    ],
+    "defaultValue": "Deny"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "anyOf": [
+     {
+      "field": "Microsoft.Web/sites/virtualNetworkSubnetId",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/config/ipSecurityRestrictions[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/staticSites/privateEndpointConnections[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/staticSites/publicNetworkAccess",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/networkConfig.virtualNetwork.subnetResourceId",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/networkConfig.virtualNetwork.swiftSupported",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/networkConfig/subnetResourceId",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/networkConfig/swiftSupported",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/networkConfig/virtualNetwork.subnetResourceId",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/networkConfig/virtualNetwork.swiftSupported",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/networkConfig.virtualNetwork.subnetResourceId",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/networkConfig.virtualNetwork.swiftSupported",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/networkConfig/subnetResourceId",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/networkConfig/swiftSupported",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/networkConfig/virtualNetwork.subnetResourceId",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/networkConfig/virtualNetwork.swiftSupported",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/siteConfig.loadBalancing",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/siteConfig.vnetName",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/siteConfig.ipSecurityRestrictions[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/gatewaySiteName",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/outboundIpAddresses",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/siteConfig.scmIpSecurityRestrictions[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/privateAccess.virtualNetworks.virtualNetworks[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/siteConfig.vnetRouteAllEnabled",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/siteConfig.vnetPrivatePortsCount",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/siteConfig.publicNetworkAccess",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/virtualNetworkSubnetId",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/vnetRouteAllEnabled",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/vnetImagePullEnabled",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/vnetContentShareEnabled",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/publicNetworkAccess",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/siteConfig.ipSecurityRestrictions[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/siteConfig.scmIpSecurityRestrictions[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/virtualNetworkSubnetId",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/vnetRouteAllEnabled",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/vnetImagePullEnabled",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/vnetContentShareEnabled",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/virtualnetworkconnections/vnetResourceId",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/virtualnetworkconnections/routes[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/virtualnetworkconnections/dnsServers",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/virtualnetworkconnections/gateways.vnetName",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/virtualnetworkconnections/gateways.vpnPackageUri",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/virtualnetworkconnections/gateways/vnetName",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/virtualnetworkconnections/gateways/vpnPackageUri",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/hostingEnvironments/virtualNetwork",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/hostingEnvironments/vnetSubnetName",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/hostingEnvironments/vnetName",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/hostingEnvironments/userWhitelistedIpRanges[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/hostingEnvironments/networkingConfiguration",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/config/ipSecurityRestrictions[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/config/loadBalancing",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/config/routingRules[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/config/vnetName",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/config/ipSecurityRestrictions[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/config/scmIpSecurityRestrictions[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/config/vnetRouteAllEnabled",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/config/vnetPrivatePortsCount",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/config/ipSecurityRestrictions[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/config/loadBalancing",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/config/vnetName",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/config/ipSecurityRestrictions[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/config/scmipSecurityRestrictions[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/config/vnetRouteAllEnabled",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/config/vnetPrivatePortsCount",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/privateAccess/virtualNetworks[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/privateAccess/enabled",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/hybridconnection/entityConnectionString",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/hybridconnection/entityName",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/hybridconnection/hostname",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/slots/hybridconnection/port",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/virtualnetworkconnections/dnsServers",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/virtualnetworkconnections/gateways/vnetName",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/virtualnetworkconnections/gateways/vpnPackageUri",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/virtualnetworkconnections/isSwift",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/virtualnetworkconnections/resyncRequired",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/sites/virtualnetworkconnections/routes[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/hostingEnvironments/dnsSuffix",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/hostingEnvironments/vipMappings[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/hostingEnvironments/networkAccessControlList[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/hostingEnvironments/configurations/windowsOutboundIpAddresses[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/hostingEnvironments/configurations/linuxOutboundIpAddresses[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/hostingEnvironments/configurations/externalInboundIpAddresses[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/hostingEnvironments/configurations/internalInboundIpAddresses[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/hostingEnvironments/configurations/dnsSuffix",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/hostingEnvironments/configurations/ftpEnabled",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/hostingEnvironments/configurations/inboundIpAddressOverride",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/staticSites/privateEndpointConnections[*]",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/staticSites/publicNetworkAccess",
+      "exists": "true"
+     },
+     {
+      "field": "Microsoft.Web/staticSites/privateEndpointConnections/privateLinkServiceConnectionState",
+      "exists": "true"
+     }
+    ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]"
+   }
+  }
+ },
+ "id": "/subscriptions/adb72f63-572d-40ac-836f-c8c70ab7c0c5/providers/Microsoft.Authorization/policyDefinitions/cdb40fef-207e-48d5-b2bb-22dd81eea702",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "cdb40fef-207e-48d5-b2bb-22dd81eea702"
+}

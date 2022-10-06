@@ -1,0 +1,105 @@
+{
+ "properties": {
+  "displayName": "jc-HV- SQL Deny Admin Changes with Tag Exception",
+  "policyType": "Custom",
+  "mode": "All",
+  "description": "Denys changing the Administrator for SQL Servers and SQL managed instances unless a specific tag with a specific value is present.",
+  "metadata": {
+   "createdBy": "11a70583-fc7d-4e8c-9963-15630c21009a",
+   "createdOn": "2022-09-21T13:19:54.7357926Z",
+   "updatedBy": "11a70583-fc7d-4e8c-9963-15630c21009a",
+   "updatedOn": "2022-09-21T13:20:50.6547486Z"
+  },
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "Enable or disable the execution of the policy"
+    },
+    "allowedValues": [
+     "Audit",
+     "Deny",
+     "Disabled"
+    ],
+    "defaultValue": "Deny"
+   },
+   "tagName": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Tag Name",
+     "description": "The tag name to skip the application of a lock"
+    }
+   },
+   "tagValue": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Tag Value",
+     "description": "Value of the tag to skip"
+    }
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "Not": {
+       "field": "[concat('tags[', parameters('tagName'), ']')]",
+       "equals": "[parameters('tagValue')]"
+      }
+     },
+     {
+      "anyOf": [
+       {
+        "field": "Microsoft.Sql/servers/administrators/login",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Sql/servers/administrators/activeDirectory.login",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Sql/servers/administrators/ActiveDirectory.azureADOnlyAuthentication",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Sql/servers/administrators/azureADOnlyAuthentication",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Sql/managedInstances/administrators/login",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.Sql/managedInstances/administrators/ActiveDirectory.login",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.DBforMySQL/servers/administrators/activeDirectory.login",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.DBForMySQL/servers/Administrators/login",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.DBforPostgreSQL/servers/administrators/activeDirectory.login",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.DBForPostgreSQL/servers/Administrators/login",
+        "exists": "true"
+       }
+      ]
+     }
+    ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]"
+   }
+  }
+ },
+ "id": "/subscriptions/adb72f63-572d-40ac-836f-c8c70ab7c0c5/providers/Microsoft.Authorization/policyDefinitions/e6e31f21-1931-40d7-ad21-8c7204b11d93",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "e6e31f21-1931-40d7-ad21-8c7204b11d93"
+}

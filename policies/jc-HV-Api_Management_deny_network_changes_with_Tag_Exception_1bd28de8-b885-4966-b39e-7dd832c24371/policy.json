@@ -1,0 +1,181 @@
+{
+ "properties": {
+  "displayName": "jc-HV-Api Management deny network changes with Tag Exception",
+  "policyType": "Custom",
+  "mode": "All",
+  "description": "Denys all network changes unless a specfic tag with a specific value is present",
+  "metadata": {
+   "createdBy": "11a70583-fc7d-4e8c-9963-15630c21009a",
+   "createdOn": "2022-09-20T21:24:47.2589679Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "Enable or disable the execution of the policy"
+    },
+    "allowedValues": [
+     "Audit",
+     "Deny",
+     "Disabled"
+    ],
+    "defaultValue": "Deny"
+   },
+   "tagName": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Tag Name",
+     "description": "The tag name to skip the application of a lock"
+    }
+   },
+   "tagValue": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Tag Value",
+     "description": "Value of the tag to skip"
+    }
+   }
+  },
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "Not": {
+       "field": "[concat('tags[', parameters('tagName'), ']')]",
+       "equals": "[parameters('tagValue')]"
+      }
+     },
+     {
+      "anyOf": [
+       {
+        "field": "Microsoft.ApiManagement/service/hostnameConfigurations[*]",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/staticIPs[*]",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/vpnconfiguration",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/additionalLocations[*]",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/gatewayUrl",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/gatewayRegionalUrl",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/hostnameConfigurations[*].defaultSslBinding",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/publicIPAddresses[*]",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/privateIPAddresses[*]",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/virtualNetworkConfiguration",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/additionalLocations[*].publicIPAddresses[*]",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/additionalLocations[*].privateIPAddresses[*]",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/additionalLocations[*].virtualNetworkConfiguration",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/additionalLocations[*].gatewayRegionalUrl",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/certificates[*]",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/virtualNetworkType",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/enableClientCertificate",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/additionalLocations[*].disableGateway",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/disableGateway",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/additionalLocations[*].zones[*]",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/zones[*]",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/hostnameConfigurations[*].certificateSource",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/hostnameConfigurations[*].certificateStatus",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/publicIpAddressId",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/additionalLocations[*].publicIpAddressId",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/publicNetworkAccess",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/privateEndpointConnections[*]",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/backends/proxy",
+        "exists": "true"
+       },
+       {
+        "field": "Microsoft.ApiManagement/service/backends/tls",
+        "exists": "true"
+       }
+      ]
+     }
+    ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]"
+   }
+  }
+ },
+ "id": "/subscriptions/adb72f63-572d-40ac-836f-c8c70ab7c0c5/providers/Microsoft.Authorization/policyDefinitions/1bd28de8-b885-4966-b39e-7dd832c24371",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "1bd28de8-b885-4966-b39e-7dd832c24371"
+}
