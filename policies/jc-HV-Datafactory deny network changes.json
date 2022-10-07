@@ -1,0 +1,88 @@
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "Enable or disable the execution of the policy"
+    },
+    "allowedValues": [
+     "Audit",
+     "Deny",
+     "Disabled"
+    ],
+    "defaultValue": "Deny"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "anyOf": [
+        {
+         "field": "Microsoft.DataFactory/factories/managedVirtualNetworks.vNetId",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DataFactory/factories/managedVirtualNetworks.alias",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DataFactory/factories/managedVirtualNetworks.managedPrivateEndpoints.connectionState",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DataFactory/factories/managedVirtualNetworks.managedPrivateEndpoints.fqdns[*]",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DataFactory/factories/managedVirtualNetworks.managedPrivateEndpoints.groupId",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DataFactory/factories/managedVirtualNetworks.managedPrivateEndpoints.isReserved",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DataFactory/factories/managedVirtualNetworks.managedPrivateEndpoints.privateLinkResourceId",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DataFactory/factories/publicNetworkAccess",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DataFactory/factories/integrationRuntimes/Managed.typeProperties.computeProperties.vNetProperties",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DataFactory/factories/integrationRuntimes/Managed.typeProperties.computeProperties.vNetProperties.publicIPs[*]",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DataFactory/factories/integrationRuntimes/Managed.managedVirtualNetwork",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DataFactory/factories/managedVirtualNetworks/vNetId",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DataFactory/factories/managedVirtualNetworks/alias",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DataFactory/factories/managedVirtualNetworks/managedPrivateEndpoints/connectionState",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DataFactory/factories/managedVirtualNetworks/managedPrivateEndpoints/fqdns[*]",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DataFactory/factories/privateEndPointConnections/privateLinkServiceConnectionState",
+         "exists": "true"
+        }
+       ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]"
+   }
+  }

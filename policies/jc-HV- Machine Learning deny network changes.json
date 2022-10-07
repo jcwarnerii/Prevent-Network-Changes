@@ -1,0 +1,76 @@
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "Enable or disable the execution of the policy"
+    },
+    "allowedValues": [
+     "Audit",
+     "Deny",
+     "Disabled"
+    ],
+    "defaultValue": "Deny"
+   }
+  },
+  "policyRule": {
+   "if": {
+        "anyOf": [
+            {
+            "field": "Microsoft.MachineLearningServices/workspaces/privateEndpointConnections[*]",
+            "exists": "true"
+            },
+            {
+            "field": "Microsoft.MachineLearningServices/workspaces/sharedPrivateLinkResources[*]",
+            "exists": "true"
+            },
+            {
+            "field": "Microsoft.MachineLearningServices/workspaces/publicNetworkAccess",
+            "exists": "true"
+            },
+            {
+            "field": "Microsoft.MachineLearningServices/workspaces/onlineEndpoints/publicNetworkAccess",
+            "exists": "true"
+            },
+            {
+            "field": "Microsoft.MachineLearningServices/workspaces/onlineEndpoints/deployments/privateNetworkConnection",
+            "exists": "true"
+            },
+            {
+            "field": "Microsoft.MachineLearningServices/workspaces/computes/subnet",
+            "exists": "true"
+            },
+            {
+            "field": "Microsoft.MachineLearningServices/workspaces/computes/sshSettings",
+            "exists": "true"
+            },
+            {
+            "field": "Microsoft.MachineLearningServices/workspaces/computes/connectivityEndpoints",
+            "exists": "true"
+            },
+            {
+            "field": "Microsoft.MachineLearningServices/workspaces/computes/connectivityEndpoints.publicIpAddress",
+            "exists": "true"
+            },
+            {
+            "field": "Microsoft.MachineLearningServices/workspaces/computes/connectivityEndpoints.privateIpAddress",
+            "exists": "true"
+            },
+            {
+            "field": "Microsoft.MachineLearningServices/workspaces/computes/isolatedNetwork",
+            "exists": "true"
+            },
+            {
+            "field": "Microsoft.MachineLearningServices/workspaces/computes/enableNodePublicIp",
+            "exists": "true"
+            },
+            {
+            "field": "Microsoft.MachineLearningServices/workspaces/privateEndpointConnections/privateEndpoint",
+            "exists": "true"
+            }
+        ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]"
+   }
+  }

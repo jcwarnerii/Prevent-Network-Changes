@@ -1,0 +1,56 @@
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "Enable or disable the execution of the policy"
+    },
+    "allowedValues": [
+     "Audit",
+     "Deny",
+     "Disabled"
+    ],
+    "defaultValue": "Deny"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "anyOf": [
+        {
+         "field": "Microsoft.EventGrid/domains/privateEndpointConnections[*]",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.EventGrid/domains/publicNetworkAccess",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.EventGrid/domains/inboundIpRules[*]",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.EventGrid/domains/privateEndpointConnections/privateEndpoint",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.EventGrid/domains/privateEndpointConnections/groupIds[*]",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.EventGrid/domains/privateEndpointConnections/privateLinkServiceConnectionState",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.EventGrid/domains/endpoint",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.EventGrid/domains/privateEndpointConnections/provisioningState",
+         "exists": "true"
+        }
+       ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]"
+   }
+  }

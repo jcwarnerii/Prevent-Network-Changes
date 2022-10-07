@@ -1,0 +1,140 @@
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "Enable or disable the execution of the policy"
+    },
+    "allowedValues": [
+     "Audit",
+     "Deny",
+     "Disabled"
+    ],
+    "defaultValue": "Deny"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "anyOf": [
+        {
+         "field": "Microsoft.ApiManagement/service/hostnameConfigurations[*]",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/staticIPs[*]",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/vpnconfiguration",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/additionalLocations[*]",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/gatewayUrl",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/gatewayRegionalUrl",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/hostnameConfigurations[*].defaultSslBinding",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/publicIPAddresses[*]",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/privateIPAddresses[*]",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/virtualNetworkConfiguration",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/additionalLocations[*].publicIPAddresses[*]",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/additionalLocations[*].privateIPAddresses[*]",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/additionalLocations[*].virtualNetworkConfiguration",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/additionalLocations[*].gatewayRegionalUrl",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/certificates[*]",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/virtualNetworkType",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/enableClientCertificate",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/additionalLocations[*].disableGateway",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/disableGateway",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/additionalLocations[*].zones[*]",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/zones[*]",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/hostnameConfigurations[*].certificateSource",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/hostnameConfigurations[*].certificateStatus",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/publicIpAddressId",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/additionalLocations[*].publicIpAddressId",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/publicNetworkAccess",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/privateEndpointConnections[*]",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/backends/proxy",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.ApiManagement/service/backends/tls",
+         "exists": "true"
+        }
+       ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]"
+   }
+  }

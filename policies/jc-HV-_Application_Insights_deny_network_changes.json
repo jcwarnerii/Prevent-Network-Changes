@@ -1,0 +1,36 @@
+   "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "Enable or disable the execution of the policy"
+    },
+    "allowedValues": [
+     "Audit",
+     "Deny",
+     "Disabled"
+    ],
+    "defaultValue": "Deny"
+   }
+  },
+  "policyRule": {
+   "if": {
+     "anyOf": [
+         {
+          "field": "Microsoft.Insights/components/PrivateLinkScopedResources[*]",
+          "exists": "true"
+         },
+         {
+          "field": "Microsoft.Insights/components/publicNetworkAccessForIngestion",
+          "exists": "true"
+         },
+         {
+          "field": "Microsoft.Insights/components/publicNetworkAccessForQuery",
+          "exists": "true"
+         }
+        ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]"
+   }
+  }

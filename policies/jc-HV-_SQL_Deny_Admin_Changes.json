@@ -1,0 +1,66 @@
+
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "Enable or disable the execution of the policy"
+    },
+    "allowedValues": [
+     "Audit",
+     "Deny",
+     "Disabled"
+    ],
+    "defaultValue": "Deny"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "anyOf": [
+        {
+         "field": "Microsoft.Sql/servers/administrators/login",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.Sql/servers/administrators/activeDirectory.login",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.Sql/servers/administrators/ActiveDirectory.azureADOnlyAuthentication",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.Sql/servers/administrators/azureADOnlyAuthentication",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.Sql/managedInstances/administrators/login",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.Sql/managedInstances/administrators/ActiveDirectory.login",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DBforMySQL/servers/administrators/activeDirectory.login",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DBForMySQL/servers/Administrators/login",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DBforPostgreSQL/servers/administrators/activeDirectory.login",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DBForPostgreSQL/servers/Administrators/login",
+         "exists": "true"
+        }
+       ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]"
+   }
+  }
+ 

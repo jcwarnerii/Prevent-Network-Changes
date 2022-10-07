@@ -1,0 +1,60 @@
+  "parameters": {
+   "effect": {
+    "type": "String",
+    "metadata": {
+     "displayName": "Effect",
+     "description": "Enable or disable the execution of the policy"
+    },
+    "allowedValues": [
+     "Audit",
+     "Deny",
+     "Disabled"
+    ],
+    "defaultValue": "Deny"
+   }
+  },
+  "policyRule": {
+   "if": {
+    "anyOf": [
+        {
+         "field": "Microsoft.DocumentDB/databaseAccounts/virtualNetworkRules[*]",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DocumentDB/databaseAccounts/ipRangeFilter",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DocumentDB/databaseAccounts/ipRules[*]",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DocumentDB/databaseAccounts/publicNetworkAccess",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DocumentDB/databaseAccounts/privateEndpointConnections[*]",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DocumentDB/databaseAccounts/networkAclBypassResourceIds[*]",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DocumentDB/databaseAccounts/privateEndpointConnections/privateEndpoint",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DocumentDB/databaseAccounts/privateEndpointConnections/privateLinkServiceConnectionState",
+         "exists": "true"
+        },
+        {
+         "field": "Microsoft.DocumentDB/databaseAccounts/privateEndpointConnections/groupId",
+         "exists": "true"
+        }
+       ]
+   },
+   "then": {
+    "effect": "[parameters('effect')]"
+   }
+  }
