@@ -1,0 +1,5 @@
+App Service apps should have local authentication methods disabled for FTP deployments - Audit - Requires AAD logins
+App Service apps should require FTPS only -- Audit
+App Service apps should only be accessible over HTTPS  - Audit
+App Service apps should use the latest TLS version - Audit
+App Service Environment should have TLS 1.0 and 1.1 disabled - Audit, Deny
