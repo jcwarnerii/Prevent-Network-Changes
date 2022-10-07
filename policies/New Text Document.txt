@@ -3,3 +3,169 @@ App Service apps should require FTPS only -- Audit
 App Service apps should only be accessible over HTTPS  - Audit
 App Service apps should use the latest TLS version - Audit
 App Service Environment should have TLS 1.0 and 1.1 disabled - Audit, Deny
+
+
+Enforce Secure Communications with App Services (HTTPS, FTPS, and TLS) (HV)
+Prevent Network Changes (HV)
+Prevent Network Changes with Tag Exception (HV)
+
+
+App Service apps should require FTPS only
+AuditIfNotExists
+Built-in
+App Service apps should require FTPS only_1
+App Service apps should only be accessible over HTTPS
+Audit
+Built-in
+App Service apps should only be accessible over HTTPS_1
+App Service app slots should only be accessible over HTTPS
+Audit
+Built-in
+App Service app slots should only be accessible over HTTPS_1
+App Service app slots should require FTPS only
+AuditIfNotExists
+Built-in
+App Service app slots should require FTPS only_1
+App Service Environment should have TLS 1.0 and 1.1 disabled
+Audit
+Built-in
+App Service Environment should have TLS 1.0 and 1.1 disabled_1
+App Service apps should use the latest TLS version
+AuditIfNotExists
+Built-in
+App Service apps should use the latest TLS version_1
+App Service app slots should have local authentication methods disabled for FTP deployments
+AuditIfNotExists
+Built-in
+App Service app slots should have local authentication methods disabled for FTP deployments_1
+App Service apps should have local authentication methods disabled for FTP deployments
+
+
+App Service apps should require FTPS only
+AuditIfNotExists
+Built-in
+App Service apps should require FTPS only_1
+App Service apps should only be accessible over HTTPS
+Audit
+Built-in
+App Service apps should only be accessible over HTTPS_1
+App Service app slots should only be accessible over HTTPS
+Audit
+Built-in
+App Service app slots should only be accessible over HTTPS_1
+App Service app slots should require FTPS only
+AuditIfNotExists
+Built-in
+App Service app slots should require FTPS only_1
+App Service Environment should have TLS 1.0 and 1.1 disabled
+Audit
+Built-in
+App Service Environment should have TLS 1.0 and 1.1 disabled_1
+App Service apps should use the latest TLS version
+AuditIfNotExists
+Built-in
+App Service apps should use the latest TLS version_1
+App Service app slots should have local authentication methods disabled for FTP deployments
+AuditIfNotExists
+Built-in
+App Service app slots should have local authentication methods disabled for FTP deployments_1
+App Service apps should have local authentication methods disabled for FTP deployments
+
+
+Api Management deny network changes (HV)
+HV EA
+Custom
+Policy
+Prevent Network Changes
+Api Management deny network changes with Tag Exception (HV)
+HV EA
+Custom
+Policy
+Prevent Network Changes
+App Services deny network changes (HV)
+HV EA
+Custom
+Policy
+Prevent Network Changes
+App Services deny network changes with Tag Exception (HV)
+HV EA
+Custom
+Policy
+Prevent Network Changes
+Application Insights deny network changes (HV)
+HV EA
+Custom
+Policy
+Prevent Network Changes
+Application Insights deny network changes with Tag Exception (HV)
+HV EA
+Custom
+Policy
+Prevent Network Changes
+Cosmos Database deny network changes
+HV EA
+Custom
+Policy
+Prevent Network Changes
+Cosmos Database deny network changes with Tag Exception (HV)
+HV EA
+Custom
+Policy
+Prevent Network Changes
+Databricks deny network changes (HV)
+HV EA
+Custom
+Policy
+Prevent Network Changes
+Databricks deny network changes with Tag Exception (HV)
+HV EA
+Custom
+Policy
+Prevent Network Changes
+Datafactory deny network changes (HV)
+HV EA
+Custom
+Policy
+Prevent Network Changes
+Datafactory deny network changes with Tag Exception (HV)
+HV EA
+Custom
+Policy
+Prevent Network Changes
+Event Grid deny network changes (HV)
+HV EA
+Custom
+Policy
+Prevent Network Changes
+Event Grid deny network changes with Tag Exception (HV)
+HV EA
+Custom
+Policy
+Prevent Network Changes
+Logic Apps deny network changes
+HV EA
+Custom
+Policy
+Prevent Network Changes
+Logic Apps deny network changes with Tag Exception (HV)
+HV EA
+Custom
+Policy
+Prevent Network Changes
+Machine Learning deny network changes (HV)
+HV EA
+Custom
+Policy
+Prevent Network Changes
+Machine Learning deny network changes with Tag Exception (HV)
+HV EA
+Custom
+Policy
+Prevent Network Changes
+SQL Deny Admin Changes
+HV EA
+Custom
+Policy
+Prevent Network Changes
+SQL Deny Admin Changes with Tag Exception (HV)
+HV EA
